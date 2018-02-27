@@ -27,8 +27,14 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>64</width>
+       <height>378</height>
+      </size>
+     </property>
      <property name="pixmap">
-      <pixmap resource="../colx.qrc">:/images/about</pixmap>
+      <pixmap>:/images/about</pixmap>
      </property>
     </widget>
    </item>
@@ -54,7 +60,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>447</width>
+          <width>479</width>
           <height>68</height>
          </rect>
         </property>
@@ -96,9 +102,7 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../colx.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>okButton</sender>

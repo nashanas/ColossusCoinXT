@@ -14,7 +14,7 @@ PIVX readme: https://github.com/PIVX-Project/PIVX/blob/master/doc/gitian-buildin
 
 ### Build environment
 
-Scripts that does setup of build environment: setup_lxc.sh, setup_vm_builder.sh
+Scripts that does setup of build environment: `setup_lxc.sh, setup_vm_builder.sh`
 
 MacOS SDK have to be placed in the inputs folder: https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.11.sdk.tar.xz
 
@@ -25,7 +25,7 @@ Install Java: https://www.digitalocean.com/community/tutorials/how-to-install-ja
 
 Install Jenkins: https://blog.programster.org/debian-8-install-jenkins
 
-Script that does this stuff: setup_jenkins.sh
+Script that does this stuff: `setup_jenkins.sh`
 
 Test: http://[Jenkins Server IP]:8080
 
@@ -55,7 +55,7 @@ Test: http://[Jenkins Server IP]:8080
     chmod +x $WORKSPACE/jenkins.sh
     export RELEASEDIR=/var/www/colx
     $WORKSPACE/jenkins.sh
-    
+
 Optionally add schedule to build every day:
 
     TZ=Europe/London
@@ -78,7 +78,7 @@ Install build tools and build dependencies
     make
 
 Build COLX
-    
+
     cd ..
     ./autogen.sh
     export HOSTS=x86_64-pc-linux-gnu
