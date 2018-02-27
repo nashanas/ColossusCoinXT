@@ -5,18 +5,13 @@ Setup build server
 
 Debian 8.1 x64 server: ssh + standard utilities, user with name: debian, root access.
 
-Read next links before get started:
-
-DASH readme: https://forum.bits.media/index.php?/topic/18648-%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D1%84%D0%BE%D1%80%D0%BA%D0%B0-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-dash/
-
-PIVX readme: https://github.com/PIVX-Project/PIVX/blob/master/doc/gitian-building.md
-
+Read next links before get started: [DASH](https://forum.bits.media/index.php?/topic/18648-%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D1%84%D0%BE%D1%80%D0%BA%D0%B0-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-dash/) and [PIVX](https://github.com/PIVX-Project/PIVX/blob/master/doc/gitian-building.md)
 
 ### Build environment
 
 Scripts that does setup of build environment: `setup_lxc.sh, setup_vm_builder.sh`
 
-MacOS SDK have to be placed in the inputs folder: https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.11.sdk.tar.xz
+MacOS SDK have to be placed in the inputs folder: [MacOSX10.11.sdk.tar.xz](https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.11.sdk.tar.xz)
 
 
 ### Jenkins CI
@@ -32,23 +27,23 @@ Test: http://[Jenkins Server IP]:8080
 
 ### Configure Jenkins
 
-1. Open Jenkins admin console: http://[Jenkins Server IP]:8080
+Open Jenkins admin console: http://[Jenkins Server IP]:8080
 
-2. Enter admin password and install recommended plugins, create admin user.
+Enter admin password and install recommended plugins, create admin user.
 
-3. Add two jobs: one for building master and another for building particular commit.
+Add two jobs: one for building master and another for building particular commit.
 
-4. Project name: colx-master or colx-commit
+Project name: colx-master or colx-dev
 
-5. Description: Build COLX for Win, Mac, Linux
+Description: Build COLX for Win, Mac, Linux
 
-6. Mark: Discard old builds
+Mark: Discard old builds
 
-7. Mark: This project is parameterized, if you need to build specific commit add string parameter with name COMMIT for the job that builds particular commit.
+Mark: This project is parameterized, if you need to build specific commit add string parameter with name COMMIT for the job that builds particular commit.
 
-8. In Source Code Management add git repository: https://github.com/devrandom/gitian-builder.git
+In Source Code Management add git repository: https://github.com/devrandom/gitian-builder.git
 
-9. In the build step paste script:
+In the build step paste script:
 
     rm -rf $WORKSPACE/jenkins.sh
     wget https://raw.githubusercontent.com/ColossusCoinXT/ColossusCoinXT/master/contrib/CI/jenkins.sh -O $WORKSPACE/jenkins.sh
@@ -62,22 +57,32 @@ Optionally add schedule to build every day:
     # This job needs to be run in the midnight, London time
     H 0 * * *
 
-10. Create directory `/var/www/colx` and make Jenkins owner of that directory
+Create directory `/var/www/colx` and make Jenkins owner of that directory
 
     sudo mkdir /var/www/colx
     sudo chown jenkins /var/www/colx
 
     
-### Setup developer machine with QtCreator as IDE - Ubuntu 16.04
+### Setup developer machine with QtCreator as IDE
 
-Install build tools and build dependencies
+Install build tools and build dependencies (Ubuntu 16.04)
 
     sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config curl git
     git clone https://github.com/ColossusCoinXT/ColossusCoinXT.git 
     cd ColossusCoinXT/depends
     make
 
+Install build tools and build dependencies (OSX)
+
+    Install XCode from App Store
+	Install the OS X command line tools: xcode-select --install
+    git clone https://github.com/ColossusCoinXT/ColossusCoinXT.git 
+    cd ColossusCoinXT/depends
+    make
+
 Build COLX
+
+Select appropriate host, see depends/README.md.
 
     cd ..
     ./autogen.sh
