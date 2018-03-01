@@ -15,6 +15,7 @@
 #include <QString>
 #include <QTableView>
 #include <QTableWidget>
+#include <QProcess>
 
 #include <boost/filesystem.hpp>
 
@@ -99,6 +100,9 @@ Qt::ConnectionType blockingGUIThreadConnection();
 
 // Determine whether a widget is hidden behind other windows
 bool isObscured(QWidget* w);
+
+// Open file in text editor
+void openLocalFile(const boost::filesystem::path& p);
 
 // Open debug.log
 void openDebugLogfile();

@@ -346,31 +346,34 @@ bool isObscured(QWidget* w)
     return !(checkPoint(QPoint(0, 0), w) && checkPoint(QPoint(w->width() - 1, 0), w) && checkPoint(QPoint(0, w->height() - 1), w) && checkPoint(QPoint(w->width() - 1, w->height() - 1), w) && checkPoint(QPoint(w->width() / 2, w->height() / 2), w));
 }
 
+void openLocalFile(const boost::filesystem::path& p)
+{
+    if (boost::filesystem::exists(p))
+#if defined(Q_OS_MAC)
+        QProcess::startDetached("open", QStringList() << "-e" << boostPathToQString(p));
+#else
+        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(p)));
+#endif
+    else
+        error("File does not exist: %s", p.string().c_str());
+}
+
 void openDebugLogfile()
 {
-    boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
-
     /* Open debug.log with the associated application */
-    if (boost::filesystem::exists(pathDebug))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathDebug)));
+    openLocalFile(GetDataDir() / "debug.log");
 }
 
 void openConfigfile()
 {
-    boost::filesystem::path pathConfig = GetConfigFile();
-
-    /* Open colx.conf with the associated application */
-    if (boost::filesystem::exists(pathConfig))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
+    /* Open ColossusCoinXT.conf with the associated application */
+     openLocalFile(GetConfigFile());
 }
 
 void openMNConfigfile()
 {
-    boost::filesystem::path pathConfig = GetMasternodeConfigFile();
-
     /* Open masternode.conf with the associated application */
-    if (boost::filesystem::exists(pathConfig))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
+    openLocalFile(GetMasternodeConfigFile());
 }
 
 void showBackups()
