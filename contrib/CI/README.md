@@ -72,23 +72,28 @@ Install build tools and build dependencies (Ubuntu 16.04)
     cd ColossusCoinXT/depends
     make
 
-Install build tools and build dependencies (OSX)
+Install build tools and build dependencies (OSX 10.11)
 
-    Install XCode from App Store
-	Install the OS X command line tools: xcode-select --install
+    Install XCode from App Store or download from https://developer.apple.com/xcode/ (8.2.1 for OSX 10.11)
+    Install the OS X command line tools: xcode-select --install
+    Qt fix: https://stackoverflow.com/questions/33728905/qt-creator-project-error-xcode-not-set-up-properly-you-may-need-to-confirm-t
+    cd /Applications/Xcode.app/Contents/Developer/usr/bin/
+    sudo ln -s xcodebuild xcrun
+    Install https://brew.sh
+    brew install autoconf automake libtool pkg-config
     git clone https://github.com/ColossusCoinXT/ColossusCoinXT.git 
     cd ColossusCoinXT/depends
     make
 
 Build COLX
 
-Select appropriate host, see depends/README.md.
+Select appropriate host, see `depends` folder after previous step has done.
 
     cd ..
     ./autogen.sh
     export HOSTS=x86_64-pc-linux-gnu
     export BASEPREFIX=`pwd`/depends
-    CONFIG_SITE=${BASEPREFIX}/`echo "${HOSTS}" | awk '{print $1;}'`/share/config.site ./configure --prefix=/ --enable-debug
+    CONFIG_SITE=${BASEPREFIX}/`echo "${HOSTS}" | awk '{print $1;}'`/share/config.site ./configure --prefix=/ --enable-debug --with-gui=qt5
     make
 
 
@@ -115,3 +120,5 @@ Select appropriate host, see depends/README.md.
 10. Select executable path
 
 11. Start debugging with Qt Creator
+
+12. If you have errors when compiling Qt tests then configure with option `--disable-tests`.
