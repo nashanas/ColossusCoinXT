@@ -61,23 +61,34 @@ fi
 
 if [[ ! -e 'ColossusCoinXT' ]]
 then
-    echo 'Clonning git repository...'
+    echo "Clonning git repository..."
     git clone https://github.com/ColossusCoinXT/ColossusCoinXT.git 
 else
-    echo 'Updating git repository...'
+    echo "Updating git repository..."
     pushd `pwd`
     cd ColossusCoinXT
     git pull
     popd
 fi
 
+if [[ ! -z "${BRANCH}" ]]
+then
+    echo "Switching to the branch=${BRANCH}..."
+    pushd `pwd`
+    cd ColossusCoinXT
+    git checkout "${BRANCH}"
+    popd
+fi
+
 if [[ -z "${COMMIT}" ]]
 then
+    echo "Commit variable is not specified, extracting from repo..."
     pushd `pwd`
     cd ColossusCoinXT
     commit=`git rev-parse HEAD`
     popd
 else
+    echo "Commit variable is specified, COMMIT=${COMMIT}"
     commit="${COMMIT}"
 fi
 
