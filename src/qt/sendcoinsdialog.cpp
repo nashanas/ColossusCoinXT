@@ -278,6 +278,10 @@ void SendCoinsDialog::on_sendButton_clicked()
         strFee = QString(tr(
             "(obfuscation requires this amount to be rounded up to the nearest %1).")
                              .arg(strNearestAmount));
+    } else if (model->getOptionsModel()->getCoinControlFeatures() &&
+               CoinControlDialog::coinControl && CoinControlDialog::coinControl->HasSelected()) {
+        recipients[0].inputType = ALL_COINS;
+        strFunds = tr("using") + " <b>" + tr("selected inputs") + "</b>";
     } else {
         recipients[0].inputType = ALL_COINS;
         strFunds = tr("using") + " <b>" + tr("any available funds (not recommended)") + "</b>";
@@ -912,6 +916,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
             if (!model->getPubKey(keyid, pubkey)) // Unknown change address
             {
                 ui->labelCoinControlChangeLabel->setText(tr("Warning: Unknown change address"));
+                CoinControlDialog::coinControl->destChange = addr.Get();
             } else // Known change address
             {
                 ui->labelCoinControlChangeLabel->setStyleSheet("QLabel{color:black;}");
