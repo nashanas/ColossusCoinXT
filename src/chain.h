@@ -488,10 +488,10 @@ public:
     /** Returns the index entry for the tip of this chain, or NULL if none. */
     CBlockIndex* Tip(bool fProofOfStake = false) const
     {
-        if (vChain.size() < 1)
+        if (vChain.empty())
             return NULL;
 
-        CBlockIndex* pindex = vChain[vChain.size() - 1];
+        CBlockIndex* pindex = vChain.back();
 
         if (fProofOfStake) {
             while (pindex && pindex->pprev && !pindex->IsProofOfStake())
