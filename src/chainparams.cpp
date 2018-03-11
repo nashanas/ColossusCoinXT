@@ -109,6 +109,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 120; // ColossusCoinXT: 2 minute
         nTargetSpacing = 1 * 120;  // ColossusCoinXT: 2 minute
+        nPastBlocksMin = 24;
         nLastPOWBlock = 10080;
         nMaturity = 90;
         nMasternodeCountDrift = 20;
@@ -202,24 +203,32 @@ public:
         pchMessageStart[3] = 0xbb;
         vAlertPubKey = ParseHex("000010e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9");
         nDefaultPort = 51374;
+        bnProofOfWorkLimit = ~uint256(0) >> 1;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // ColossusCoinXT: 1 day
         nTargetSpacing = 1 * 60;  // ColossusCoinXT: 1 minute
+        nPastBlocksMin = 200;
         nLastPOWBlock = 200;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
-        nMaxMoneyOut = 1200000000 * COIN;
+        nMaxMoneyOut = int64_t(20000000000) * COIN;
+        nModifierInterval = 60;
+        nModifierIntervalRatio = 3;
+        nBudgetPercent = 5;
+        nMinStakeAge = 60*60; //1 hour
+        nMasternodeRewardPercent = 60; // % of block reward that goes to masternodes
+        nRequiredMasternodeCollateral = 10000000 * COIN; //10,000,000
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1454124731;
+        genesis.nTime = 1520769358;
         genesis.nNonce = 2452017;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x1d411bb2686ab8aea4c3a80ea9812f84cf665c164878978af916830d92a5e00f"));
+        assert(hashGenesisBlock == uint256("0x6cd37a546cfaafeee652fd0f3a85ba64c0f539f771a27fca9610cdc2f3278932"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -238,17 +247,20 @@ public:
 
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
-        fAllowMinDifficultyBlocks = true;
+        fAllowMinDifficultyBlocks = false;
         fDefaultConsistencyChecks = false;
-        fRequireStandard = false;
+        fRequireStandard = true;
         fMineBlocksOnDemand = false;
+        fSkipProofOfWorkCheck = false;
         fTestnetToBeDeprecatedFieldRPC = true;
+        fHeadersFirstSyncingActive = false;
 
-        nPoolMaxTransactions = 2;
+        nPoolMaxTransactions = 3;
         strSporkKey = "04348C2F50F90267E64FACC65BFDC9D0EB147D090872FB97ABAE92E9A36E6CA60983E28E741F8E7277B11A7479B626AC115BA31463AC48178A5075C5A9319D4A38";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
     }
+
     const Checkpoints::CCheckpointData& Checkpoints() const
     {
         return dataTestnet;
@@ -278,6 +290,7 @@ public:
         nMinerThreads = 1;
         nTargetTimespan = 24 * 60 * 60; // Pivx: 1 day
         nTargetSpacing = 1 * 60;        // Pivx: 1 minutes
+        nPastBlocksMin = 200;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1454124731;
         genesis.nBits = 0x207fffff;
