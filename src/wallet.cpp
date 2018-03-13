@@ -2429,12 +2429,11 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
             vwtxPrev.push_back(pcoin.first);
             txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
 
-            //presstab HyperStake - calculate the total size of our new output including the stake reward so that we can use it to decide whether to split the stake outputs
-            const CBlockIndex* pIndex0 = chainActive.Tip();
-            uint64_t nTotalSize = pcoin.first->vout[pcoin.second].nValue + GetBlockValue(pIndex0->nHeight, 0, false);
+            //presstab HyperStake - calculate the total size of our new output not including the stake reward to decide whether to split the stake outputs
+            uint64_t nSplitSize = pcoin.first->vout[pcoin.second].nValue;
 
             //presstab HyperStake - if MultiSend is set to send in coinstake we will add our outputs here (values asigned further down)
-            if (nTotalSize / 2 > nStakeSplitThreshold * COIN)
+            if (nSplitSize / 2 > nStakeSplitThreshold * COIN)
                 txNew.vout.push_back(CTxOut(0, scriptPubKeyOut)); //split stake
 
             if (fDebug && GetBoolArg("-printcoinstake", false))
