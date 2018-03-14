@@ -281,7 +281,10 @@ std::string GetRequiredPaymentsString(int nBlockHeight)
 void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFees, bool fProofOfStake)
 {
     CBlockIndex* pindexPrev = chainActive.Tip();
-    if (!pindexPrev) return;
+    if (!pindexPrev) {
+        LogPrintf("%s: pindexPrev is nullptr", __func__);
+        return;
+    }
 
     bool hasPayment = true;
     CScript payee;
@@ -301,24 +304,33 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
     CAmount blockValue = GetBlockValue(pindexPrev->nHeight, nFees, false);
     CAmount masternodePayment = GetMasternodePayment(blockValue);
 
-
-
     if (hasPayment) {
         if (fProofOfStake) {
             /**For Proof Of Stake vout[0] must be null
              * Stake reward can be split into many different outputs, so we must
              * use vout.size() to align with several different cases.
-             * An additional output is appended as the masternode payment
              */
-            unsigned int i = txNew.vout.size();
-            txNew.vout.resize(i + 1);
-            txNew.vout[i].scriptPubKey = payee;
-            txNew.vout[i].nValue = masternodePayment;
+            if (txNew.vout.size() < 2) {
+                LogPrintf("%s: invalid transaction, vout size is %d", __func__, txNew.vout.size());
+            } else {
+                //Append an additional output as the masternode payment
+                txNew.vout.push_back(CTxOut(masternodePayment, payee));
 
-            //subtract mn payment from the stake reward
-            txNew.vout[i - 1].nValue -= masternodePayment;
+                /**Subtract mn payment from the stake reward
+                 * There can be 1 or 2 stake outputs so subtract equally
+                */
+                if (txNew.vout.size() > 3) {
+                    const CAmount masternodePayment1 = masternodePayment / 2;
+                    const CAmount masternodePayment2 = masternodePayment - masternodePayment1;
+                    txNew.vout[1].nValue -= masternodePayment1;
+                    txNew.vout[2].nValue -= masternodePayment2;
+                } else
+                    txNew.vout[1].nValue -= masternodePayment;
 
-            LogPrintf("*** total reward %s masternode %s stake %s\n", FormatMoney(blockValue), FormatMoney(masternodePayment), FormatMoney(txNew.vout[i - 1].nValue));
+                LogPrintf("*** total reward %s masternode %s stake %s\n",
+                          FormatMoney(blockValue), FormatMoney(masternodePayment),
+                          FormatMoney(blockValue - masternodePayment));
+            }
         } else {
             txNew.vout.resize(2);
             txNew.vout[1].scriptPubKey = payee;
