@@ -227,8 +227,8 @@
         <translation>&amp;BIP 38 Salaus</translation>
     </message>
     <message>
-        <source>Enter a Pivx Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Syötä Pivx osoite, jonnka tahtoisit salata käyttäen BIP 38.
+        <source>Enter a COLX address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Syötä COLX osoite, jonnka tahtoisit salata käyttäen BIP 38.
 Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityisavaimen.</translation>
     </message>
     <message>
@@ -236,7 +236,7 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>Osoite:</translation>
     </message>
     <message>
-        <source>The PIVX address to sign the message with</source>
+        <source>The COLX address to sign the message with</source>
         <translation>COLX osoite, jolla viesti allekirjoitetaan</translation>
     </message>
     <message>
@@ -288,7 +288,7 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>&amp;BIP 38 salauksen avaus</translation>
     </message>
     <message>
-        <source>The PIVX address the message was signed with</source>
+        <source>The COLX address the message was signed with</source>
         <translation>COLX osoite, jolla viesti allekirjoitettiin</translation>
     </message>
     <message>
@@ -1104,7 +1104,7 @@ Please check the address and try again.</source>
     </message>
     <message>
         <source>This option is the quickest and will cost about ~0.025 COLX to anonymize 10000 COLX</source>
-        <translation>Tämä vaihtoehto on nopein ja maksaa noin ~0.025 COLX anonymoidaksesi 10000 COLX</translation>
+        <translation>Tämä vaihtoehto on nopein ja maksaa noin ~0.025 COLX anonymoidaksesi 10000 COLX</translation>
     </message>
     <message>
         <source>This option is moderately fast and will cost about 0.05 COLX to anonymize 10000 COLX</source>
@@ -1608,7 +1608,7 @@ Please check the address and try again.</source>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The PIVX address to sign the message with</source>
+        <source>The COLX address to sign the message with</source>
         <translation>COLX osoite, jolla viesti allekirjoitetaan</translation>
     </message>
     <message>
@@ -1636,7 +1636,7 @@ Please check the address and try again.</source>
         <translation>Allekirjoita viesti todistaaksesi, että omistat tämän COLX osoitteen</translation>
     </message>
     <message>
-        <source>The PIVX address the message was signed with</source>
+        <source>The COLX address the message was signed with</source>
         <translation>COLX osoite, jolla viesti allekirjoitettiin</translation>
     </message>
     <message>

@@ -88,9 +88,9 @@ Value mnbudget(const Array& params, bool fHelp)
 
         CBitcoinAddress address(params[5].get_str());
         if (!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Pivx address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid COLX address");
 
-        // Parse Pivx address
+        // Parse COLX address
         CScript scriptPubKey = GetScriptForDestination(address.Get());
         CAmount nAmount = AmountFromValue(params[6]);
 
@@ -164,9 +164,9 @@ Value mnbudget(const Array& params, bool fHelp)
 
         CBitcoinAddress address(params[5].get_str());
         if (!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Pivx address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid COLX address");
 
-        // Parse Pivx address
+        // Parse COLX address
         CScript scriptPubKey = GetScriptForDestination(address.Get());
         CAmount nAmount = AmountFromValue(params[6]);
         uint256 hash = ParseHashV(params[7], "parameter 1");

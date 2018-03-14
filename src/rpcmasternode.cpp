@@ -85,7 +85,7 @@ Value obfuscation(const Array& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Pivx address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid COLX address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
