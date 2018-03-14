@@ -119,6 +119,8 @@ public:
         nModifierIntervalRatio = 3;
         nBudgetPercent = 5;
         nMinStakeAge = 60*60*24*7; //7 days
+        nMasternodePaymentSigTotal = 10;
+        nMasternodePaymentSigRequired = 6;
         nMasternodeRewardPercent = 60; // % of block reward that goes to masternodes
         nRequiredMasternodeCollateral = 10000000 * COIN; //10,000,000
 
@@ -222,6 +224,8 @@ public:
         nMinStakeAge = 60*60; //1 hour
         nMasternodeRewardPercent = 60; // % of block reward that goes to masternodes
         nRequiredMasternodeCollateral = 10000000 * COIN; //10,000,000
+        nMasternodePaymentSigTotal = 10;
+        nMasternodePaymentSigRequired = 1;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1520769358;

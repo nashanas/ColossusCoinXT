@@ -97,6 +97,8 @@ public:
     int64_t StartMasternodePayments() const { return nStartMasternodePayments; }
     CBaseChainParams::Network NetworkID() const { return networkID; }
 
+    int GetMasternodePaymentSigTotal() const { return nMasternodePaymentSigTotal; }
+    int GetMasternodePaymentSigRequired() const { return nMasternodePaymentSigRequired; }
     int64_t GetMasternodeRewardPercent() const { return nMasternodeRewardPercent; }
     int64_t GetBudgetPercent() const { return nBudgetPercent; }
     int64_t GetMinStakeAge() const { return nMinStakeAge; }
@@ -147,6 +149,8 @@ protected:
     std::string strObfuscationPoolDummyAddress;
     int64_t nStartMasternodePayments;
 
+    int nMasternodePaymentSigTotal;
+    int nMasternodePaymentSigRequired;
     int64_t nMasternodeRewardPercent;
     int64_t nBudgetPercent;
     int64_t nMinStakeAge;
