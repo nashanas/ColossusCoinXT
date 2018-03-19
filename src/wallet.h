@@ -287,6 +287,8 @@ public:
 
     const CWalletTx* GetWalletTx(const uint256& hash) const;
 
+    bool SignTx(CMutableTransaction& tx, unsigned int nIn) const;
+
     //! check whether we are allowed to upgrade (or already support) to the named feature
     bool CanSupportFeature(enum WalletFeature wf)
     {

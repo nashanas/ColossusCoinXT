@@ -74,6 +74,18 @@ const CWalletTx* CWallet::GetWalletTx(const uint256& hash) const
     return &(it->second);
 }
 
+bool CWallet::SignTx(CMutableTransaction& tx, unsigned int nIn) const
+{
+    if (nIn >= tx.vin.size())
+        return error("%s: invalid input nIn=%u, vin.size()=%u\n", __func__, nIn, tx.vin.size());
+
+    const CWalletTx* txFrom = GetWalletTx(tx.vin[nIn].prevout.hash);
+    if (!txFrom)
+        return error("%s: previous tx %s is not found in the wallet\n", __func__, tx.vin[nIn].prevout.hash.ToString());
+
+    return SignSignature(*this, *txFrom, tx, nIn);
+}
+
 CPubKey CWallet::GenerateNewKey()
 {
     AssertLockHeld(cs_wallet);                                 // mapKeyMetadata

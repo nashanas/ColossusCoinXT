@@ -52,7 +52,7 @@ bool CMasternodeSync::IsBlockchainSynced()
     if (pindex == NULL) return false;
 
     // verify this only for the main network, because
-	// test network may be stopped for more than 1 hour
+    // test network may be stopped for more than 1 hour
     if (pindex->nTime + 60 * 60 < GetTime() && Params().NetworkID() == CBaseChainParams::MAIN)
         return false;
 
