@@ -90,7 +90,6 @@ public:
     const std::vector<CDNSSeedData>& DNSSeeds() const { return vSeeds; }
     const std::vector<unsigned char>& Base58Prefix(Base58Type type) const { return base58Prefixes[type]; }
     const std::vector<CAddress>& FixedSeeds() const { return vFixedSeeds; }
-    virtual const Checkpoints::CCheckpointData& Checkpoints() const = 0;
     int PoolMaxTransactions() const { return nPoolMaxTransactions; }
     std::string SporkKey() const { return strSporkKey; }
     std::string ObfuscationPoolDummyAddress() const { return strObfuscationPoolDummyAddress; }
@@ -101,10 +100,12 @@ public:
     int GetMasternodePaymentSigRequired() const { return nMasternodePaymentSigRequired; }
     int64_t GetMasternodeRewardPercent() const { return nMasternodeRewardPercent; }
     int64_t GetBudgetPercent() const { return nBudgetPercent; }
-    int64_t GetMinStakeAge() const { return nMinStakeAge; }
     unsigned int GetModifierInterval() const { return nModifierInterval; }
     unsigned int GetModifierIntervalRatio() const { return nModifierIntervalRatio; }
     CAmount GetRequiredMasternodeCollateral() const { return nRequiredMasternodeCollateral; }
+
+    virtual int64_t GetMinStakeAge(int nTargetHeight) const = 0;
+    virtual const Checkpoints::CCheckpointData& Checkpoints() const = 0;
 
 protected:
     CChainParams() {}
@@ -153,7 +154,6 @@ protected:
     int nMasternodePaymentSigRequired;
     int64_t nMasternodeRewardPercent;
     int64_t nBudgetPercent;
-    int64_t nMinStakeAge;
     unsigned int nModifierInterval;
     unsigned int nModifierIntervalRatio;
     CAmount nRequiredMasternodeCollateral;

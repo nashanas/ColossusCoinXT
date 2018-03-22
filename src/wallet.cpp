@@ -1571,7 +1571,7 @@ bool less_then_denom(const COutput& out1, const COutput& out2)
     return (!found1 && found2);
 }
 
-bool CWallet::SelectStakeCoins(std::set<std::pair<const CWalletTx*, unsigned int> >& setCoins, CAmount nTargetAmount) const
+bool CWallet::SelectStakeCoins(std::set<std::pair<const CWalletTx*, unsigned int> >& setCoins, CAmount nTargetAmount, int nTargetHeight) const
 {
     vector<COutput> vCoins;
     AvailableCoins(vCoins, true);
@@ -1583,7 +1583,7 @@ bool CWallet::SelectStakeCoins(std::set<std::pair<const CWalletTx*, unsigned int
             continue;
 
         //check for min age
-        if (GetTime() - out.tx->GetTxTime() < Params().GetMinStakeAge())
+        if (GetTime() - out.tx->GetTxTime() < Params().GetMinStakeAge(nTargetHeight))
             continue;
 
         //check that it is matured
@@ -1597,7 +1597,7 @@ bool CWallet::SelectStakeCoins(std::set<std::pair<const CWalletTx*, unsigned int
     return true;
 }
 
-bool CWallet::MintableCoins()
+bool CWallet::MintableCoins(int nTargetHeight) const
 {
     CAmount nBalance = GetBalance();
     if (mapArgs.count("-reservebalance") && !ParseMoney(mapArgs["-reservebalance"], nReserveBalance))
@@ -1609,7 +1609,7 @@ bool CWallet::MintableCoins()
     AvailableCoins(vCoins, true);
 
     BOOST_FOREACH (const COutput& out, vCoins) {
-        if (GetTime() - out.tx->GetTxTime() > Params().GetMinStakeAge())
+        if (GetTime() - out.tx->GetTxTime() > Params().GetMinStakeAge(nTargetHeight))
             return true;
     }
 
@@ -2357,7 +2357,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
     if (GetTime() - nLastStakeSetUpdate > nStakeSetUpdateTime) {
         setStakeCoins.clear();
-        if (!SelectStakeCoins(setStakeCoins, nBalance - nReserveBalance))
+        if (!SelectStakeCoins(setStakeCoins, nBalance - nReserveBalance, chainActive.Height() + 1))
             return false;
 
         nLastStakeSetUpdate = GetTime();

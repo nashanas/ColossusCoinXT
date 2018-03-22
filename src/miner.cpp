@@ -506,7 +506,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
     if (fProofOfStake && (GetTime() - nMintableLastCheck > 5 * 60)) // 5 minute check time
     {
         nMintableLastCheck = GetTime();
-        fMintableCoins = pwallet->MintableCoins();
+        fMintableCoins = pwallet->MintableCoins(chainActive.Height() + 1);
     }
 
     while (fGenerateBitcoins || fProofOfStake) {

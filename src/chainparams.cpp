@@ -118,7 +118,6 @@ public:
         nModifierInterval = 60;
         nModifierIntervalRatio = 3;
         nBudgetPercent = 5;
-        nMinStakeAge = 60*60*24*7; //7 days
         nMasternodePaymentSigTotal = 10;
         nMasternodePaymentSigRequired = 6;
         nMasternodeRewardPercent = 60; // % of block reward that goes to masternodes
@@ -182,6 +181,14 @@ public:
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
     }
 
+    int64_t GetMinStakeAge(int nTargetHeight) const
+    {
+        if (nTargetHeight >= 300000)
+            return 60*60*8; //8 hours
+        else
+            return 60*60*24*7; //7 days
+    }
+
     const Checkpoints::CCheckpointData& Checkpoints() const
     {
         return data;
@@ -221,7 +228,6 @@ public:
         nModifierInterval = 60;
         nModifierIntervalRatio = 3;
         nBudgetPercent = 5;
-        nMinStakeAge = 60*60; //1 hour
         nMasternodeRewardPercent = 60; // % of block reward that goes to masternodes
         nRequiredMasternodeCollateral = 10000000 * COIN; //10,000,000
         nMasternodePaymentSigTotal = 10;
@@ -263,6 +269,14 @@ public:
         strSporkKey = "04348C2F50F90267E64FACC65BFDC9D0EB147D090872FB97ABAE92E9A36E6CA60983E28E741F8E7277B11A7479B626AC115BA31463AC48178A5075C5A9319D4A38";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
+    }
+
+    int64_t GetMinStakeAge(int nTargetHeight) const
+    {
+        if (nTargetHeight >= 6300)
+            return 60*30; //30 minutes
+        else
+            return 60*60; //1 hour
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
@@ -315,6 +329,7 @@ public:
         fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = false;
     }
+
     const Checkpoints::CCheckpointData& Checkpoints() const
     {
         return dataRegtest;
