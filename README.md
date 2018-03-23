@@ -47,5 +47,10 @@ Telegram Community: https://t.me/colossuscoin
 Forums: http://www.colossuscointalk.org/
 
 
+Terms of Service:
+https://colossuscoinxt.org/2018/01/colx-terms-of-service-tos/
+ColossuscoinXT software is an experimental software. There is no guarantee given here.
+Use it at your own risk and please do your due diligence when investing.
+
 ### ColossuscoinXT – Extremely resource friendly | Lightning fast | Stealth Anonymous 
 ![](https://i.imgur.com/NnR0Y18.png) 
