@@ -273,10 +273,7 @@ public:
 
     int64_t GetMinStakeAge(int nTargetHeight) const
     {
-        if (nTargetHeight >= 6300)
-            return 60*30; //30 minutes
-        else
-            return 60*60; //1 hour
+        return 60*60*8; //8 hours
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
