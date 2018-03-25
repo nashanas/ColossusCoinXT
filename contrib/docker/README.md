@@ -10,9 +10,9 @@ Script that installs docker-ce: `setup_docker_debian.sh`
 
 Pre: `ColossusCoinXT.conf MUST be available under link COLX_CONF_URL as pointed out in the Dockerfile`
 
-Build container: `sudo docker build --tag colx:1.0.0 .`
+Build container: `sudo docker build --tag colx:1.0.3 .`
 
-Run container: `docker run -d --name colx.cont colx:1.0.0`
+Run container: `docker run -d --name colx.cont colx:1.0.3`
 
 See if it is up: `docker ps -a`
 
@@ -21,3 +21,5 @@ Shell in the container: `docker exec -it colx.cont /bin/bash`
 Test RPC: `colx-cli -rpcuser=colx -rpcpassword=<from config file> help`
 
 Stop container: `docker stop colx.cont`
+
+Delete container: `docker rm colx.cont`

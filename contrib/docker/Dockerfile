@@ -1,10 +1,10 @@
 FROM debian:jessie
 MAINTAINER pavik - https://github.com/pavik
 
-ENV COLX_VERSION=1.0.0 \
+ENV COLX_VERSION=1.0.3 \
  COLX_USER=colx
 
-ENV COLX_URL=https://github.com/ColossusCoinXT/ColossusCoinXT/releases/download/v$COLX_VERSION-linux/ColossusCoinXT-$COLX_VERSION-x86_64-linux-gnu.tar.gz \
+ENV COLX_URL=https://github.com/ColossusCoinXT/ColossusCoinXT/releases/download/v$COLX_VERSION/colx-$COLX_VERSION-x86_64-linux-gnu.tar.gz \
  COLX_CONF=/home/$COLX_USER/.ColossusCoinXT/ColossusCoinXT.conf \
  COLX_CONF_URL=https://raw.githubusercontent.com/ColossusCoinXT/ColossusCoinXT/master/ColossusCoinXT.conf
 
