@@ -1,6 +1,6 @@
 Name "@PACKAGE_NAME@ (@WINDOWS_BITS@-bit)"
 
-RequestExecutionLevel highest
+RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 
 # General Symbol Definitions
