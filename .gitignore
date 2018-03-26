@@ -121,3 +121,15 @@ qa/pull-tester/test.*/*
 .project
 /doc/doxygen/
 /nbproject/
+.idea
+autom4te.cache
+cmake-build-debug
+aclocal.m4
+autogen.sh
+CMakeLists.txt
+config.log
+config.status
+configure
+libtool
+Makefile
+Makefile.in

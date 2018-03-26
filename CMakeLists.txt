@@ -572,4 +572,4 @@ add_executable(ColossusCoinXT
         src/wallet_ismine.cpp
         src/wallet_ismine.h
         src/walletdb.cpp
-        src/walletdb.h src/zerocoin/Coin.h src/zerocoin/Zerocoin.h src/bignum.h src/zerocoin/Params.h)
+        src/walletdb.h src/zerocoin/Coin.h src/zerocoin/Zerocoin.h src/bignum.h src/zerocoin/Params.h src/zerocoin/Accumulator.h)

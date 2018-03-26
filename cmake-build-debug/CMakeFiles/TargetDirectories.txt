@@ -1,3 +1,0 @@
-/Volumes/Works/BlockChain/COLX/ColossusCoinXT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Volumes/Works/BlockChain/COLX/ColossusCoinXT/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Volumes/Works/BlockChain/COLX/ColossusCoinXT/cmake-build-debug/CMakeFiles/ColossusCoinXT.dir
