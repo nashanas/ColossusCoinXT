@@ -87,7 +87,7 @@ Install build tools and build dependencies (OSX 10.11)
 
 Build COLX
 
-Select appropriate host, see `depends` folder after previous step has done.
+Select appropriate host, see `depends` folder after previous step has done or just run script `build_all.sh`.
 
     cd ..
     ./autogen.sh
