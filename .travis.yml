@@ -81,7 +81,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key: ${GH_TOKEN}
+  api_key: $GH_TOKEN
   file_glob: true
   file: $TRAVIS_BUILD_DIR/release-build/*
   on:
