@@ -78,10 +78,14 @@ after_script:
 before_deploy:
   - $TRAVIS_BUILD_DIR/contrib/travis-artifacts/collect-artifacts.sh $TRAVIS_BUILD_DIR $OUTDIR build $TRAVIS_COMMIT $HOST
   - if [ -n "$TRAVIS_TAG" ] ; then $TRAVIS_BUILD_DIR/contrib/travis-artifacts/collect-artifacts.sh $TRAVIS_BUILD_DIR $OUTDIR release-build $TRAVIS_TAG $HOST ; fi
+branches:
+  only:
+  - master
 deploy:
   provider: releases
   api_key: 3c0f1d0a62133e86d069e28e97e48473fef7ee52 
   file: $TRAVIS_BUILD_DIR/release-build/*
   skip_cleanup: true
   on:
+    repo: nashanas/ColossusCoinXT
     tags: true
