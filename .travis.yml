@@ -75,3 +75,14 @@ script:
 after_script:
     - echo $TRAVIS_COMMIT_RANGE
     - echo $TRAVIS_COMMIT_LOG
+before_deploy:
+  - $TRAVIS_BUILD_DIR/contrib/travis-artifacts/collect-artifacts.sh $TRAVIS_BUILD_DIR $OUTDIR build $TRAVIS_COMMIT $HOST
+  - if [ -n "$TRAVIS_TAG" ] ; then $TRAVIS_BUILD_DIR/contrib/travis-artifacts/collect-artifacts.sh $TRAVIS_BUILD_DIR $OUTDIR release-build $TRAVIS_TAG $HOST ; fi
+deploy:
+  provider: releases
+  api_key: ${GH_TOKEN}
+  file_glob: true
+  file: $TRAVIS_BUILD_DIR/release-build/*
+  on:
+    repo: nashanas/ColossusCoinXT
+    tags: true
