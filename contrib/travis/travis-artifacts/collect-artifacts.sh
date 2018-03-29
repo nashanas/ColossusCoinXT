@@ -11,14 +11,16 @@ RELEASEBASE=$3
 COMMIT=$4
 HOST=$5
 
+cd $BASEDIR
+zip -r my_arch.zip $OUTDIR
+ls
+
 RELEASEDIR=$BASEDIR/$RELEASEBASE/$COMMIT/$HOST
 
 cd $BASEDIR/bitcoin-$HOST
 
 mkdir -p $RELEASEDIR
 ZIPFILES=$(ls $OUTDIR/bin/* || true)
-
-zip -r my_arch.zip $OUTDIR
 
 # Linux artifacts
 [ -z "$ZIPFILES" ] || \
