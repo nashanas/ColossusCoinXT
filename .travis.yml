@@ -88,4 +88,3 @@ deploy:
   skip_cleanup: true
   on:
     repo: nashanas/ColossusCoinXT
-    tags: true
