@@ -85,8 +85,7 @@ branches:
   - master
 deploy:
   provider: releases
-  user: $USERNAME
-  password:  $PASS
+  github_token: $GH_TOKEN
   file: $TRAVIS_BUILD_DIR/release-build/*
   skip_cleanup: true
   on:
