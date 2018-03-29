@@ -22,7 +22,7 @@ ZIPFILES=$(ls $OUTDIR/bin/* || true)
 [ -z "$ZIPFILES" ] || \
        zip -uj $RELEASEDIR/ColossusCoinXT-$COMMIT.zip ${ZIPFILES}
        
- ls
+ ls $RELEASEDIR
 
 # MaxOSX artifacts
 cp -a *.dmg $RELEASEDIR || true
