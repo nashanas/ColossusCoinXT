@@ -95,7 +95,7 @@ public:
          * a large 4-byte int at any alignment.
          */
         pchMessageStart[0] = 0x45;
-        pchMessageStart[1] = 0xc5;
+        pchMessageStart[1] = 0xb5;
         pchMessageStart[2] = 0xfe;
         pchMessageStart[3] = 0xea;
         vAlertPubKey = ParseHex("0000098d3ba6ba6e7423fa5cbd6a89e0a9a5300f88d33000005cb1a8b7ed2c1000335fc8dc4f012cb8241cc0bdafd6ca70c5f5448916e4e6f511ffffffffffffff");
