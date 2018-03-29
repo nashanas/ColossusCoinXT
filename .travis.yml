@@ -85,7 +85,8 @@ branches:
   - master
 deploy:
   provider: releases
-  api_key: 3c0f1d0a62133e86d069e28e97e48473fef7ee52 
+  user: $USERNAME
+  password:  $PASS
   file: $TRAVIS_BUILD_DIR/release-build/*
   skip_cleanup: true
   on:
