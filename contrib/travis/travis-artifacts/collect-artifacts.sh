@@ -25,9 +25,9 @@ ZIPFILES=$(ls $OUTDIR/bin/* || true)
  ls
 
 # MaxOSX artifacts
-cp -a ColossusCoinXT.dmg $RELEASEDIR || true
+cp -a *.dmg $RELEASEDIR || true
 
 # Windows artifacts
-cp -a colossusCoinxt-*-win*-setup.exe $RELEASEDIR || true
+cp -a *.exe $RELEASEDIR || true
 
 find $RELEASEDIR
