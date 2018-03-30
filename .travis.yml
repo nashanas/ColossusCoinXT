@@ -81,4 +81,4 @@ deploy:
     on:
       branch: master
       repo: nashanas/ColossusCoinXT
-      tags: true
+      tags: false
