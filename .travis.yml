@@ -72,6 +72,8 @@ before_deploy:
   - sudo chmod +x $TRAVIS_BUILD_DIR/contrib/travis/travis-artifacts/collect-artifacts.sh
   - $TRAVIS_BUILD_DIR/contrib/travis/travis-artifacts/collect-artifacts.sh $TRAVIS_BUILD_DIR $OUTDIR build $TRAVIS_COMMIT $HOST
   - if [ -n "$TRAVIS_TAG" ] ; then $TRAVIS_BUILD_DIR/contrib/travis/travis-artifacts/collect-artifacts.sh $TRAVIS_BUILD_DIR $OUTDIR release-build $TRAVIS_TAG $HOST ; fi
+   -ls $TRAVIS_BUILD_DIR/src
+   -ls $TRAVIS_BUILD_DIR/src/qt
 deploy:
   - provider: releases
     skip_cleanup: true
