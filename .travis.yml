@@ -70,8 +70,8 @@ after_script:
     - echo $TRAVIS_COMMIT_LOG
 before_deploy:
   - sudo chmod +x $TRAVIS_BUILD_DIR/contrib/travis/travis-artifacts/collect-artifacts.sh
-  -ls $TRAVIS_BUILD_DIR/src
-  -ls $TRAVIS_BUILD_DIR/src/qt
+  - ls $TRAVIS_BUILD_DIR/src
+  - ls $TRAVIS_BUILD_DIR/src/qt
 deploy:
   - provider: releases
     skip_cleanup: true
